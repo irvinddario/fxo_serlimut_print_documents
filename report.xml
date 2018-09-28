@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Bill of sale -->
+        <report 
+            id="action_report_bill_of_sale_monvertical"
+            model="account.invoice"
+            string="Boleta"
+            report_type="qweb-pdf"
+            name="fxo_serlimut_print_documents.report_bill_of_sale_monvertical"
+            file="fxo_serlimut_print_documents.report_bill_of_sale_monvertical"
+        />
+        <record id="action_report_bill_of_sale_monvertical" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_bill_of_sale_monvertical"/>
+        </record>
+
+        <!-- Invoice -->
+        <report
+            id="action_report_invoice_monvertical"
+            model="account.invoice"
+            string="Factura"
+            report_type="qweb-pdf"
+            name="fxo_serlimut_print_documents.report_invoice_monvertical"
+            file="fxo_serlimut_print_documents.report_invoice_monvertical"
+        />
+        <record id="action_report_invoice_monvertical" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_invoice_monvertical"/>
+        </record>
+
+        <!-- Guia rem. -->
+        <report
+            id="action_report_guia_rem_monvertical"
+            model="stock.picking"
+            string="Guia remisión"
+            report_type="qweb-pdf"
+            name="fxo_serlimut_print_documents.report_guia_rem_monvertical"
+            file="fxo_serlimut_print_documents.report_guia_rem_monvertical"
+        />
+        <record id="action_report_guia_rem_monvertical" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_guia_rem_monvertical"/>
+        </record>
+
+        <!-- TODO: VALE DEVOLUCION UNIFORME -->
+        <report
+                id="action_report_vale_devolucion_uniforme"
+                model="stock.picking"
+                string="Vale de Devolucion de Uniforme"
+                report_type="qweb-pdf"
+                name="fxo_serlimut_print_documents.report_vale_devolucion_uniforme"
+                file="fxo_serlimut_print_documents.report_vale_devolucion_uniforme"
+        />
+        <record id="action_report_vale_devolucion_uniforme" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_report_vale_devolucion_uniforme"/>
+        </record>
+
+        <!-- TODO: VALE DEVOLUCION UNIFORME -->
+        <report
+                id="action_report_vale_devolucion_uniforme"
+                model="stock.picking"
+                string="Vale Devolucion de Uniforme"
+                report_type="qweb-pdf"
+                name="fxo_serlimut_print_documents.report_vale_devolucion_uniforme"
+                file="fxo_serlimut_print_documents.report_vale_devolucion_uniforme"
+        />
+        <record id="action_report_vale_devolucion_uniforme" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_report_vale_devolucion_uniforme"/>
+        </record>
+
+        <!-- TODO: VALE DE UNIFORME -->
+        <report
+                id="action_report_vale_uniforme"
+                model="stock.picking"
+                string="Vale de Uniforme"
+                report_type="qweb-pdf"
+                name="fxo_serlimut_print_documents.report_vale_devolucion_uniforme"
+                file="fxo_serlimut_print_documents.report_vale_devolucion_uniforme"
+        />
+        <record id="action_report_vale_uniforme" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_report_vale_devolucion_uniforme"/>
+        </record>
+
+        <!-- TODO: Reporte de Bienes Distribuidos -->
+        <report
+                id="action_reporte_bienes_distribuidos"
+                model="stock.picking.driver"
+                string="Reporte de Bienes Distribuidos"
+                report_type="qweb-pdf"
+                name="fxo_serlimut_print_documents.report_bienes_distribuidos"
+                file="fxo_serlimut_print_documents.report_bienes_distribuidos"
+        />
+        <record id="action_reporte_bienes_distribuidos" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_reporte_bienes_distribuidos"/>
+        </record>
+
+
+
+        <!-- TODO: Consumos por tipo de Movimiento-->
+        <report
+                id="action_reporte_consumo_tipo_movimiento"
+                model="report.stock.picking.move"
+                string="Reporte de Consumo Tipo Movmiento"
+                report_type="qweb-pdf"
+                name="fxo_serlimut_print_documents.reporte_consumo_tipo_movimiento"
+                file="fxo_serlimut_print_documents.reporte_consumo_tipo_movimiento"
+                paperformat="fxo_serlimut_print_documents.paperformat_reporte_consumo_tipo_movimiento"
+        />
+        <!--<record id="action_reporte_consumo_tipo_movimiento" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="fxo_serlimut_print_documents.paperformat_reporte_bienes_distribuidos"/>
+        </record>-->
+
+
+    </data>
+</openerp>

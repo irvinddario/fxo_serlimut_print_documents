@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="paperformat_bill_of_sale_monvertical" model="report.paperformat">
+            <field name="name">Boleta monvertical</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">140</field>
+            <field name="page_width">241</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">16</field>
+            <field name="margin_left">18</field>
+            <field name="margin_right">13</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="paperformat_invoice_monvertical" model="report.paperformat">
+            <field name="name">Factura monvertical</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="paperformat_invoice_monverticalxxx" model="report.paperformat">
+            <field name="name">Factura monverticalxx</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">280</field>
+            <field name="page_width">241</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">47</field>
+            <field name="margin_bottom">40</field>
+            <field name="margin_left">25</field>
+            <field name="margin_right">25</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+        <record id="paperformat_guia_rem_monvertical" model="report.paperformat">
+            <field name="name">Guía rem. monvertical</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">27</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">20</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+        <record id="paperformat_credit_note_monvertical" model="report.paperformat">
+            <field name="name">Nota de crédito monvertical</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">163</field>
+            <field name="page_width">215</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">37</field>
+            <field name="margin_left">14</field>
+            <field name="margin_right">18</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+        <record id="paperformat_debit_note_monvertical" model="report.paperformat">
+            <field name="name">Nota de débito monvertical</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">163</field>
+            <field name="page_width">215</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">37</field>
+            <field name="margin_left">14</field>
+            <field name="margin_right">18</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="paperformat_report_vale_devolucion_uniforme" model="report.paperformat">
+            <field name="name">Guía rem. monvertical</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">280</field>
+            <field name="page_width">241</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">47</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">20</field>
+            <field name="margin_right">25</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="paperformat_reporte_bienes_distribuidos" model="report.paperformat">
+            <field name="name">Reporte Bienes Distribuidos</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">190</field>
+            <field name="page_width">241</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="paperformat_reporte_consumo_tipo_movimiento" model="report.paperformat">
+            <field name="name">Reporte Bienes Distribuidos</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">280</field>
+            <field name="page_width">241</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+        </record>
+
+    </data>
+</openerp>

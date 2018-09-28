@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='add_buttons_form'>
+            <field name='name'>import_add_buttons_form</field>
+            <field name='model'>account.invoice</field>
+            <field name='inherit_id' ref="account.invoice_form"></field>
+            <field name='arch' type="xml">
+                <button name="action_invoice_draft" position="after">
+                    <button name="pinvoice" string="Factura" type="object"  class="oe_highlight" icon="gtk-print"/>
+                    <button name="pticket" string="Boleta" type="object"  class="oe_highlight" icon="gtk-print"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

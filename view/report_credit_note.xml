@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_credit_note_monvertical">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                         <style type="text/css">
+                            .border-white td {
+                                border-top: 1px solid white !important;
+                            }
+                        </style>
+                        <t t-set="fontsize" t-value="'font-size:10px;font-family:sans-serif'"/>
+                        <t t-set="fontsize_9" t-value="'font-size:8px;font-family:sans-serif'"/>
+                        <div class="row">
+                            <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize" t-field="o.partner_id.name"/></div>
+                        </div>
+                        <div class="row">
+                            <t t-if="o.partner_id.street">
+                                <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize" t-field="o.partner_id.street"/></div>
+                            </t>
+                            <t t-if="not o.partner_id.street">
+                                <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize">- -</span></div>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <t t-if="o.partner_id.nro_documento">
+                                <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize" t-field="o.partner_id.nro_documento"/></div>
+                            </t>
+                            <t t-if="not o.partner_id.nro_documento">
+                                <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize">- -</span></div>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <t t-if="o.date_invoice">
+                                <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize" t-field="o.date_invoice"/></div>
+                            </t>
+                            <t t-if="not o.date_invoice">
+                                <div style="width: 105mm; padding-left: 20mm; height: 05mm;"><span t-att-style="fontsize">- -</span></div>
+                            </t>
+                        </div>
+                        <div class="row" style="padding-top:07mm;"></div>
+                        <table class="table table-condensed border-white" t-att-style="fontsize">
+                            <tr t-foreach="o.invoice_line" t-as="line">
+                                <t t-if="len(line['name']) > 5">
+                                    <t t-set="style" t-value="'font-weight:normal;'"/>
+                                </t>
+                                <t t-if="not len(line['name']) > 5">
+                                    <t t-set="style" t-value="'font-weight:bold;'"/>
+                                </t>
+                                <td style="width: 16mm; padding:0;">
+                                    <span>- -</span>
+                                </td>
+                                <td style="width: 11mm; padding:0;">
+                                    <span t-att-style="style" t-esc="line['quantity']" style="color:black;"/>
+                                </td>
+                                <td style="width: 10mm; padding:0;">
+                                    <span t-att-style="style" t-esc="line.uos_id.name" style="color:black;"/>
+                                </td>
+                                <td style="width: 145mm; padding:0;">
+                                    <span t-att-style="style" t-esc="line['name']" style="color:black;"/>
+                                </td>
+                                <td class="text-right" style="width: 17mm; padding:0;">
+                                    <span t-att-style="style" t-esc="line['price_unit']" style="color:black;"/>
+                                </td>
+                                <td class="text-right" style="width: 27mm; padding:0;">
+                                    <span t-att-style="style" t-esc="line['price_subtotal']" style="color:black;"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <table class="table table-condensed" t-att-style="fontsize">
+                            <tr>
+                                <td style="border-top: 1px solid white; width: 160mm; padding-left: 15mm;" class="text-left">
+                                    <span t-att-style="fontsize" t-esc="to_word(o.amount_total)"/>
+                                </td>
+                                <td class="text-right" style="border-top: 1px solid white;">
+                                    <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid white;"></td>
+                                <td class="text-right" style="border-top: 1px solid white; width: 27mm;">
+                                    <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid white;"></td>
+                                <td class="text-right" style="border-top: 1px solid white; width: 30mm;">
+                                    <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
+

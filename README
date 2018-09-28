@@ -1,0 +1,7 @@
+INSTALL:
+
+Pasos a seguir para la correcta instalación de relatorio:
+
+1. Dar permisos de ejección a los archivos que estan en el directotio templates
+   example:
+     $ chmod -R 665 templates/

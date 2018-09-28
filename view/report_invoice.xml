@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_invoice_monvertical">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <style type="text/css">.border-white td {
+                                border-top: 1px solid white !important;
+                            }</style>
+                        <t t-set="fontsize" t-value="'font-size:13px;font-family:sans-serif'"/>
+                        <div class="row">
+                            <div style="width: 200mm; padding-left: 50mm; height: 08mm" class="pull-left">
+                                <span t-att-style="fontsize" t-field="o.partner_id.name"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <t t-if="o.partner_id.street">
+                                <div style="width: 240mm; padding-left: 50mm; height: 08mm;" class="pull-left">
+                                    <span t-att-style="fontsize" t-field="o.partner_id.street"/>
+                                </div>
+                            </t>
+                            <t t-if="not o.partner_id.street">
+                                <div style="width: 240mm; padding-left: 50mm; height: 08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+                        </div>
+                        <!-- ******************************************************************************* -->
+                        <div class="row" style="padding-top:2mm">
+                            <t t-if="o.partner_id.nro_documento">
+                                <div style="width: 108mm; padding-left: 50mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize" t-field="o.partner_id.nro_documento"/>
+                                </div>
+                            </t>
+                            <t t-if="not o.partner_id.nro_documento">
+                                <div style="width: 108mm; padding-left: 50mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+
+                            <t t-if="o.date_invoice">
+                                <div style="width: 108mm; padding-left: 65mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize" t-field="o.date_invoice"/>
+                                </div>
+                            </t>
+                            <t t-if="not o.date_invoice">
+                                <div style="width: 108mm; padding-left: 65mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="row">
+                            <t t-if="o.payment_term_id.name">
+                                <div style="width: 108mm; padding-left: 50mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize" t-field="o.payment_term_id.name"/>
+                                </div>
+                            </t>
+                            <t t-if="not o.payment_term_id.name">
+                                <div style="width: 108mm; padding-left: 50mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+
+                            <t t-if="o.picking_ids">
+                                <t t-foreach="o.picking_ids" t-as="line">
+                                    <div style="width: 108mm; padding-left: 65mm; height:08mm;" class="pull-left">
+                                        <span t-att-style="fontsize" t-esc="line.nro_documento" style="color:black;"></span>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-if="not o.picking_ids">
+                                <div style="width: 108mm; padding-left: 65mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="row">
+                            <t t-if="o.sale_ids">
+                                <t t-foreach="o.sale_ids" t-as="line">
+                                    <div style="width: 108mm; padding-left: 50mm; height:08mm;" class="pull-left">
+                                        <span t-att-style="fontsize" t-esc="line['name']" style="color:black;"></span>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-if="not o.sale_ids">
+                                <div style="width: 108mm; padding-left: 50mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+
+                            <t t-if="o.user_id">
+                                <div style="width: 108mm; padding-left: 65mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize" t-field="o.user_id"/>
+                                </div>
+                            </t>
+                            <t t-if="not o.user_id">
+                                <div style="width: 108mm; padding-left: 65mm; height:08mm;" class="pull-left">
+                                    <span t-att-style="fontsize">- -</span>
+                                </div>
+                            </t>
+                        </div>
+                        <!-- ******************************************************************************* -->
+                        <div class="row" style="padding-top:11mm;"></div>
+                        <table class="table table-condensed border-white" t-att-style="fontsize">
+                            <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                <t t-if="len(line['name']) >5">
+                                    <t t-set="style" t-value="'font-weight:normal;'"/>
+                                </t>
+                                <t t-if="not len(line['name']) >5">
+                                    <t t-set="style" t-value="'font-weight:bold;'"/>
+                                </t>
+                                <!-- <td style="width: 17mm;">
+                                    <span t-att-style="style" t-esc="line.product_id.default_code" style="color:black;"></span>
+                                </td>-->
+                                <td style="width: 20mm; padding-left: 7mm">
+                                    <span t-att-style="style" t-esc="line.quantity" style="color:black;"/>
+                                </td>
+                                <td class="text-left" style="width: 100mm;">
+                                    <span t-att-style="style" t-esc="line['name']" style="color:black;"/>
+                                </td>
+
+                                <!-- <td style="width: 20mm;" class="text-center">
+                                    <span t-att-style="style" t-esc="line.uos_id.name" style="color:black;"/>
+                                </td>-->
+                                <td style="width: 20mm;" class="text-center">
+                                    <span t-att-style="style" t-esc="line['price_unit']" style="color:black;"/>
+                                </td>
+                                <td style="width: 20mm;" class="text-center">
+                                    <span t-att-style="style" t-esc="line['price_subtotal']" style="color:black;"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <div class="row">
+                            <div style="width: 185mm; padding-left: 18mm; padding-bottom: 3mm;">
+                                <span t-att-style="fontsize" t-esc="to_word(o.amount_total)"/>
+                            </div>
+                        </div>
+                        <!-- not apply style border-white in next table yes in html format mais not in format pdf -->
+                        <!-- <table class="table table-condensed" t-att-style="fontsize"> -->
+                        <div style="padding-top: 3mm">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td style="border-top: 1px solid white; width: 97mm;font-size:10px;font-family:sans-serif;font-style: italic;">
+                                        <t t-if="o.date_invoice">
+                                            <div style="width: 30mm;padding-left:20mm" class="pull-left">
+                                                <span t-esc="time.strftime('%d', time.strptime(o.date_invoice,'%Y-%m-%d'))"/>
+                                            </div>
+                                        </t>
+                                        <t t-if="o.date_invoice">
+                                            <div style="width: 30mm;padding-left:8mm" class="pull-left">
+                                                <span t-esc="time.strftime('%B', time.strptime(o.date_invoice,'%Y-%m-%d')).title()"/>
+                                            </div>
+                                        </t>
+                                        <t t-if="o.date_invoice">
+                                            <div style="width:25mm;padding-left:14mm" class="pull-left">
+                                                <span t-esc="time.strftime('%y', time.strptime(o.date_invoice,'%Y-%m-%d'))[1]"/>
+                                            </div>
+                                        </t>
+                                    </td>
+                                    <td class="text-right" style="border-top: 1px solid white; width: 29mm; font-size:16px">
+                                        <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                    <td class="text-right" style="border-top: 1px solid white; width: 27mm; font-size:16px">
+                                        <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                    <td class="text-right" style="border-top: 1px solid white; width: 30mm; font-size:16px">
+                                        <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

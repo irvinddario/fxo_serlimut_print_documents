@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="run_reporte_consumo_tipo_movimiento">
+
+
+            <div class="page">
+
+
+
+                <div class="header">
+
+                    <div style="width: 90mm; padding-left: 35mm; height:10mm;padding-top:4mm" class="pull-right">
+                        Fecha:
+                        <span>Pagina </span><span class="page" /> de <span class="topage" />
+                    </div>
+
+                </div>
+                <div class="oe_structure"/>
+
+                <br/>
+                <br/>
+
+
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id"></t>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"></t>
+                </t>
+                <div class="row">
+
+                    <div class="col-xs-6  ">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
+                             style="max-height: 85px;" />
+                    </div>
+                    <div class="col-xs-6 text-right" style="font:15px lucida-console,sans-serif !important; background-color:#893b74 !important;" >
+                        <span style="color:#fff !important;"  t-field="company.partner_id" /><br/>
+                        <span style="color:#fff !important;" t-field="company.partner_id.street" /><br/>
+                        <span style="color:#fff !important;" t-field="company.partner_id.street2" /><br/>
+                        <span style="color:#fff !important;" t-field="company.partner_id.city" /><br/>
+                        <span style="color:#fff !important;" t-field="company.partner_id.country_id" /><br/>
+                    </div>
+                </div>
+
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div class="row">
+
+
+                    <t t-set="name" t-value="0"/>
+                    <t t-set="subtotal" t-value="0"/>
+                    <t t-set="total" t-value="0"/>
+
+                    <table class="table table-condensed table" style="border-collapse: collapse;">
+                        <thead style=" background-color: #893b74;">
+                            <tr>
+                                <th width="6px"><font color="#fff"><strong>Fecha</strong></font></th>
+                                <th width="6px"><font color="#fff"><strong>T. Operacion</strong></font></th>
+                                <th width="5px"><font color="#fff"><strong>Producto</strong></font></th>
+                                <th width="80px"><font color="#fff"><strong>UM</strong></font></th>
+                                <th width="5px"><font color="#fff"><strong>Cant.</strong></font></th>
+                                <th width="5px"><font color="#fff"><strong>C.Unit</strong></font></th>
+                                <th width="5px"><font color="#fff"><strong>Total</strong></font></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+
+                                <t t-if="o.name != name">
+                                    <t t-if="name != 0">
+                                        <!--<t t-if="total != '0'">-->
+                                        <tr>
+                                            <td colspan="7" style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                                TOTAL:
+                                                <span t-esc="'%.2f'%(subtotal)"/>
+                                                <t t-set="subtotal" t-value="0"/>
+                                            </td>
+                                        </tr>
+                                        <!--</t>-->
+                                    </t>
+
+                                    <tr>
+                                        <td colspan="7" style="background-color: #9e9e9e; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <b>
+                                                <font color='#FFFFFF'>
+                                                    <t t-set="name" t-value="o.name" />
+                                                    <span t-att-style="fontsize" t-field="o.name"/> -
+                                                    <span t-att-style="fontsize" t-field="o.partner_id"/>
+                                                </font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <t t-if="o.name == name">
+                                    <tr>
+                                        <td style="border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <span t-field="o.min_date" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        </td>
+                                        <td style="border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <span t-field="o.picking_type_id"/>
+                                        </td>
+                                        <td style="border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <span t-field="o.product_id"/>
+                                        </td>
+                                        <td style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <span t-field="o.product_uom_id"/>
+                                        </td>
+                                        <td style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <span t-field="o.product_qty"/>
+                                        </td>
+                                        <td style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <t t-set="tmp" t-value="(o.product_id.standard_price * o.product_qty)"/>
+                                            <!--<span t-esc="'%.2f'%(tmp)"/>-->
+                                            <span t-field="o.product_id.standard_price"/>
+                                        </td>
+                                        <td style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                            <t t-set="subtotal" t-value="subtotal + tmp"/>
+                                            <t t-set="total" t-value="total + subtotal"/>
+                                            <span t-esc="'%.2f'%(tmp)"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+
+                                <t t-set="name" t-value="o.name" />
+
+                            </t>
+
+                            <tr>
+
+                                <td colspan="7" style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                    TOTAL:
+                                    <span t-esc="'%.2f'%(subtotal)"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <th colspan="7" style="text-align:right; border: 0.01em !important; border-style: solid !important; border-color: #fff; ">
+                                    TOTAL FINAL:
+                                    <span t-esc="'%.2f'%(total)"/>
+                                </th>
+                            </tr>
+
+
+                            <!--<t t-foreach="o.picking_ids" t-as="lines">-->
+
+                                <!--<tr>-->
+                                    <!--<th colspan="4" style="border: 0.01em !important; border-style: solid !important; border-color: #fff; ">-->
+                                        <!--<span t-att-style="fontsize" t-field="lines.picking_type_id.name"/>-->
+                                    <!--</th>-->
+                                <!--</tr>-->
+
+                                <!--<t t-foreach="o.picking_ids.pack_operation_product_ids" t-as="packs">-->
+                                    <!--<tr>-->
+                                        <!--<th style="border: 0.01em !important; border-style: solid !important; border-color: #fff; ">-->
+                                            <!--<span t-field="lines.min_date"/>-->
+                                        <!--</th>-->
+                                        <!--<th style="border: 0.01em !important; border-style: solid !important; border-color: #fff;">-->
+                                            <!--<span t-field="lines.nro_documento"/>-->
+                                        <!--</th>-->
+                                        <!--<th style="border: 0.01em !important; border-style: solid !important; border-color: #fff;">-->
+                                            <!--<span t-field="lines.product_id.name"/>-->
+                                        <!--</th>-->
+                                        <!--<th style="text-align:right;border: 0.01em !important; border-style: solid !important; border-color: #fff;">-->
+                                            <!--<span t-field="packs.product_id.standard_price"/>-->
+                                        <!--</th>-->
+
+                                    <!--</tr>-->
+                                <!--</t>-->
+                            <!--</t>-->
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <!--<t t-call="report.external_layout_footer">-->
+            <!--</t>-->
+
+
+
+        </template>
+
+        <template id="reporte_consumo_tipo_movimiento">
+            <t t-call="report.html_container">
+                <!--<t t-foreach="docs" t-as="o">-->
+                <t t-call="fxo_ryukyu_print_documents.run_reporte_consumo_tipo_movimiento"/>
+                <!--</t>-->
+            </t>
+        </template>
+
+    </data>
+</odoo>

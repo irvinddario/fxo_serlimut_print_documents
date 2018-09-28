@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='stock_picking_form'>
+            <field name='name'>stock_picking_form</field>
+            <field name='model'>stock.picking</field>
+            <field name='inherit_id' ref="stock.view_picking_form"></field>
+            <field name='arch' type="xml">
+                <!--<button name="action_cancel" position="after">
+                    <button name="get_file_guia" string="Guia" type="object"  class="oe_highlight" icon="gtk-print"/>
+                </button>
+                -->
+                <field name="partner_id" position="after">
+                    <field name="partner_invoice_id" string="Dirección de Factura" context="{'default_type':'invoice'}"/>
+                    <field name="partner_shipping_id" string="Dirección de Entrega" context="{'default_type':'delivery'}"/>
+                </field>
+
+                <!--<field name="partner_id" position="after">
+                    <field name="origin_address_id"/>
+                    <field name="delivery_address_id"/>
+                </field>-->
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,6 @@
+import report_bill_of_sale
+import report_invoice
+import report_guia_rem
+import report_credit_note
+import report_debit_note
+from . import report_stock_kardex1

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_vale_uniforme">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <style type="text/css">
+                            .border-white td {
+                            border-top: 1px solid white !important;
+                            }
+                        </style>
+
+
+                        <t t-set="fontsize" t-value="'font-size:11px;font-family:sans-serif'"/>
+                        <div class="row">
+
+                            <t t-if="o.nro_documento">
+                                <div style="width: 80mm; padding-left: 35mm; height:08mm;" class="pull-right">
+                                    <span t-att-style="fontsize" t-field="o.nro_documento"/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="row">
+                            <div style="width: 190mm; padding-left: 35mm; height:08mm;">
+                                <t t-if="o.min_date">
+                                    <span t-att-style="fontsize" t-field="o.min_date"/>
+                                </t>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div style="width: 190mm; padding-left: 35mm; height:08mm;">
+                                <t t-if="o.partner_id">
+                                    <span t-att-style="fontsize" t-field="o.partner_id"/>
+                                </t>
+                                <t t-if="not o.partner_id">
+                                    <span t-att-style="fontsize">- -</span>
+                                </t>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div style="width: 190mm; padding-left: 35mm; height:08mm;">
+                                <t t-if="o.partner_shipping_id.street">
+                                    <span t-att-style="fontsize" t-field="o.partner_shipping_id.street"/>
+                                </t>
+                                <t t-if="not o.partner_shipping_id.street">
+                                    <span t-att-style="fontsize">- -</span>
+                                </t>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div style="width: 190mm; padding-left: 35mm; height:04mm;">
+                                <t t-if="o.driver_id">
+                                    <span t-att-style="fontsize" t-field="o.driver_id.carrier_id.name"/>
+                                </t>
+                                <t t-if="not o.driver_id">
+                                    <span t-att-style="fontsize">- -</span>
+                                </t>
+
+                                <t t-if="o.driver_id">
+                                    <div style="width: 80mm; padding-right: 38mm; height:08mm;" class="pull-right">
+                                        <span t-att-style="fontsize" t-field="o.driver_id.vehicle_id.license_plate"/>
+                                    </div>
+                                </t>
+                                <t t-if="not o.driver_id">
+                                    <div style="width: 80mm; padding-left: 38mm; height:08mm;" class="pull-left"><span t-att-style="fontsize">- -</span></div>
+                                </t>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="padding-top:5mm; padding-left:00mm">
+                            <table class="table table-condensed border-white" t-att-style="fontsize" >
+                                <tr t-foreach="o.move_lines" t-as="line">
+                                    <!-- <td style="width: 14mm;">
+                                        <span t-att-style="style" t-esc="line.product_id.default_code" style="color:black;"></span>
+                                    </td>-->
+                                    <td style="width: 15mm;">
+                                        <div class="text-center">
+                                            <span t-att-style="style" t-esc="line['product_qty']" style="color:black;"/>
+                                        </div>
+                                    </td>
+                                    <td class="text-left" style="width: 40mm;">
+                                        <span t-att-style="style" t-esc="line['name']" style="color:black;"/>
+                                    </td>
+
+                                    <td style="width: 20mm;">
+                                        <div class="text-center">
+                                            <span t-att-style="style" t-esc="line.product_uom.name" style="color:black;"/>
+                                        </div>
+                                    </td>
+                                    <td style="width: 8mm;">
+                                        <div class="text-center">
+                                            <span>--</span>
+                                        </div>
+                                        <!--<span t-att-style="style" t-esc="line.product_uom.name" style="color:black;"/>-->
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="row" style="font-size:8px">
+                            <div class="text-left" style="width: 190mm; padding-left: 90mm; padding-top:5mm"><span t-esc="o.picking_type_id.name"/></div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
+
